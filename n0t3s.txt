@@ -72,6 +72,7 @@ int MessageBox(
 Maybe you want to try some ASLR bruteforce on it ;P
 Yes offcorse this registers can hold 8 bytes, that lenght is used on your normal usage.. no worries,
 if you want some address bruteforce, it's more easy because you only need to bruteforce 4^64 possibilities!!! :D sounds good right?
+just kidding.... haha!!
 |				  |
 |rax -> 0xdeadbeefcafebabebebecafe|
 |rbx -> 0xbebecafebeefbebedeadbeef|
