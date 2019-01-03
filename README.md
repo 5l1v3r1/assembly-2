@@ -1,2 +1,2 @@
-# X86 | X86-64 NASM, MASM scripts 4 learn 
+# Learning X86 | X86-64 NASM, MASM 
 Random ASM scripts
