@@ -1,0 +1,161 @@
+Simple NOTES for anyone who want to read it 
+
+push DWORD -> Used on many WinAPIs for place 4 bytes on stack e.g:
+
+messagebox_function:
+  push dword MB_OK
+	push dword title
+	push dword msg_box
+	push dword NULL
+	call MessageBoxA			  ;; launch MessageBox
+	ret
+
+Calling MessageBoxA Windows API with reverse parameters order!
+Compare your self! 
+
+messagebox_asm_function:
+  push dword MB_OK
+	push dword title
+	push dword msg_box              V
+	push dword NULL
+	call MessageBoxA			  
+	ret
+        VS
+int MessageBox(
+ HWND    hWnd,
+ LPCTSTR lpText,
+ LPCTSTR lpCaption,
+ UINT    uType
+);
+
+Allocating
+----------------------------
+DB allocates     1 byte.
+
+DW allocates     2 bytes.
+
+DD allocates     4 bytes.
+
+DQ allocates     8 bytes.
+----------------------------
+
+RESB 1 allocates 1 byte.
+
+RESW 1 allocates 2 bytes.
+
+RESD 1 allocates 4 bytes.
+
+RESQ 1 allocates 8 bytes.
+|
+|
+'....> B=1 bytes
+      -> W=2 bytes
+        -> D=4 bytes
+          -> Q=8 byte
+-=Registers=-
+16 bits registers class ( MAX 2 bytes ):
+ax -> 0xdead
+bx -> 0xbeef
+cx -> 0xcafe
+dx -> 0xbabe
+.....
+32 bits registers class ( MAX 4 bytes ):
+eax -> 0xdeadbeef
+ebx -> 0xcafebabe
+ecx -> 0xbebecafe
+edx -> 0xbeefbebe
+.....
+64 bits register class ( MAX 16 bytes ): 
+Maybe you want to try some ASLR bruteforce on it ;P
+Yes offcorse this registers can hold 8 bytes, that lenght is used on your normal usage.. no worries,
+if you want some address bruteforce, it's more easy because you only need to bruteforce 4^64 possibilities!!! :D sounds good right?
+
+rax -> 0xdeadbeefcafebabebebecafe
+rbx -> 0xbebecafebeefbebedeadbeef
+rcx -> 0xcafebabedeadbeefbeefbebe
+rdx -> 0xdeadbeefcafebabebeefbebe
+.....
+
+Little endian---> The register EIP for example, only will understand this format if you are tryng to execute some ROP Attack  
+\xef\xbe\xad\xde
+
+Big endian---> Normal human visualization
+0xdeadbeef
+
+------------------------------------------
+Register lenghts!
+Undestanting high bytes and lower bytes!! 
+Big endian:
+|
+'-> (8bits) 1 byte     (8bits) 1 byte     (8bits) 1 byte     (8bits) 1 byte
+| |------------------------------------------------------------------------------.
+| |      0xde       |        0xad       |        0xbe       |       0xef         |
+| '------------------------------------------------------------------------------|
+|                                                                                | 
+|                                                                                |-> Converting to litte endian bytes!                                                                
+'-> (8bits) 1 byte     (8bits) 1 byte     (8bits) 1 byte     (8bits) 1 byte      |
+  .------------------------------------------------------------------------------|
+  |      \xef       |        \xbe       |        \xad       |       \xde         |
+  '------------------------------------------------------------------------------|
+           |                  |
+           V                  V
+      Lower Byte          High byte
+           |                  |
+           V                  V
+      AL,BL,CL,DL... ->  AH,BH,CH,DL -> This rule are applicable for the the all other bytes
+          '---------|--------'
+                    V
+                AX,BX,CX,DX...       -> (16bits) 8 bytes registers 
+ 
+--=Tricks=--
+*-push 1
+*-pop eax
+|
+*-push 2
+*-pop ebx
+|
+'-> eax=1 
+'-> ebx=2
+|
+'-> xor ebx,ebx---> Clear register
+'-> eax=1
+'-> ebx=0
+|
+'-> add eax,20---> Add
+'-> add ebx, 30
+|
+'-> eax=0x21
+'-> ebx=0x30
+|
+'-> xor eax,ebx---> Store the result on EAX register (Attention! it will only store at the left register e.g : xor <EAX>, ebx) 
+'-> eax=0x11
+'-> ebx=0
+|
+'-> sub eax, ebx---> Substract registers
+'-> eax=0x11
+'-> ebx=0
+|
+'-> inc ebx---> Increment +1
+'-> inc eax
+|
+'-> eax=0x12
+'-> ebx=0x01
+|
+'-> dec eax---> Decrement -1
+'-> dec ebx
+|
+'-> eax=0x11
+'-> ebx=0
+|
+'-> cmp eax, ebx -> RET FALSE
+'-> jne exit     -> if not equal jump to exit
+'-> ret          -> else, RET ( return to main on the most cases ) 
+
+-=Simple loop-=
+_main:
+  xor ecx, ecx      -> Clear register to 0x00
+  add ecx, 0x100    -> add 0x100 value to ecx register  
+  loop:
+    dec ecx         -> decrement -1 from ecx register
+    jnz loop        -> if not zero back to loop
+    ret             -> else, return to the main function
