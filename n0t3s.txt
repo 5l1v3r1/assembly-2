@@ -87,7 +87,7 @@ Big endian---> Normal human visualization
 0xdeadbeef
 
 ------------------------------------------
-Register lenghts!
+Register lengths!
 Undestanting high bytes and lower bytes!! 
 Big endian:
 |
