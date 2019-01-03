@@ -31,53 +31,53 @@ int MessageBox(
 );
 *********************************
 
-Allocating!!
+|Allocating!!
 ----------------------------
-DB allocates     1 byte.
-
-DW allocates     2 bytes.
-
-DD allocates     4 bytes.
-
-DQ allocates     8 bytes.
-----------------------------
-
-RESB 1 allocates 1 byte.
-
-RESW 1 allocates 2 bytes.
-
-RESD 1 allocates 4 bytes.
-
-RESQ 1 allocates 8 bytes.
+|DB allocates     1 byte.
+|
+|DW allocates     2 bytes.
+|
+|DD allocates     4 bytes.
+|
+|DQ allocates     8 bytes.
+|----------------------------
+|
+|RESB 1 allocates 1 byte.
+|
+|RESW 1 allocates 2 bytes.
+|
+|RESD 1 allocates 4 bytes.
+|
+|RESQ 1 allocates 8 bytes.
 |
 |
 '....> B=1 bytes
       -> W=2 bytes
         -> D=4 bytes
-          -> Q=8 byte
--=Registers=-
-16 bits registers class ( MAX 2 bytes ):
-ax -> 0xdead
-bx -> 0xbeef
-cx -> 0xcafe
-dx -> 0xbabe
-.....
-32 bits registers class ( MAX 4 bytes ):
-eax -> 0xdeadbeef
-ebx -> 0xcafebabe
-ecx -> 0xbebecafe
-edx -> 0xbeefbebe
-.....
-64 bits register class ( MAX 16 bytes ): 
+          -> Q=8 bytes
+|-=Registers=-
+*16 bits registers class ( MAX 2 bytes ):
+|ax -> 0xdead|
+|bx -> 0xbeef|
+|cx -> 0xcafe|
+|dx -> 0xbabe|
+|.....	     |
+*32 bits registers class ( MAX 4 bytes ):
+|eax -> 0xdeadbeef|
+|ebx -> 0xcafebabe|
+|ecx -> 0xbebecafe|
+|edx -> 0xbeefbebe|
+|.....		  |
+*64 bits register class ( MAX 16 bytes ): 
 Maybe you want to try some ASLR bruteforce on it ;P
 Yes offcorse this registers can hold 8 bytes, that lenght is used on your normal usage.. no worries,
 if you want some address bruteforce, it's more easy because you only need to bruteforce 4^64 possibilities!!! :D sounds good right?
-
-rax -> 0xdeadbeefcafebabebebecafe
-rbx -> 0xbebecafebeefbebedeadbeef
-rcx -> 0xcafebabedeadbeefbeefbebe
-rdx -> 0xdeadbeefcafebabebeefbebe
-.....
+|				  |
+|rax -> 0xdeadbeefcafebabebebecafe|
+|rbx -> 0xbebecafebeefbebedeadbeef|
+|rcx -> 0xcafebabedeadbeefbeefbebe|
+|rdx -> 0xdeadbeefcafebabebeefbebe|
+|.....				  |
 
 Little endian---> The register EIP for example, only will understand this format if you are tryng to execute some ROP Attack  
 \xef\xbe\xad\xde
