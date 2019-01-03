@@ -118,8 +118,8 @@ Big endian:
 *-push 2
 *-pop ebx
 |
-'-> eax=1 
-'-> ebx=2
+'-> eax=1  -> (EAX = 4 bytes -> eax=0x00000001)
+'-> ebx=2  -> (EBX = 4 bytes -> ebx=0x00000002)
 |
 '-> xor ebx,ebx---> Clear register
 '-> eax=1
