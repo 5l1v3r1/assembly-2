@@ -151,6 +151,13 @@ Big endian:
 '-> eax=0x11
 '-> ebx=0
 |
+'-> xor eax, eax---> Clear register eax
+'-> push 1
+'-> pop al---> (AL = 1 byte -> 0x01)
+|
+'-> eax=0x01 
+'-> ebx=0x00
+|
 '-> cmp eax, ebx -> RET FALSE
 '-> jne exit     -> if not equal jump to exit
 '-> ret          -> else, RET ( return to main on the most cases ) 
