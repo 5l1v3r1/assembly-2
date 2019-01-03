@@ -106,7 +106,7 @@ Big endian:
       Lower Byte          High byte
            |                  |
            V                  V
-      AL,BL,CL,DL... ->  AH,BH,CH,DL -> This rule are applicable for the the all other bytes
+      AL,BL,CL,DL... ->  AH,BH,CH,DL -> This rule are applicable for the all other bytes
           '---------|--------'
                     V
                 AX,BX,CX,DX...       -> (16bits) 8 bytes registers 
