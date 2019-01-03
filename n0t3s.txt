@@ -3,7 +3,7 @@ Simple NOTES for anyone who want to read it
 push DWORD -> Used on many WinAPIs for place 4 bytes on stack e.g:
 
 messagebox_function:
-  push dword MB_OK
+  	push dword MB_OK
 	push dword title
 	push dword msg_box
 	push dword NULL
