@@ -12,23 +12,26 @@ messagebox_function:
 
 Calling MessageBoxA Windows API with reverse parameters order!
 Compare your self! 
-
+**********************************
 messagebox_asm_function:
-  push dword MB_OK
+  	push dword MB_OK
 	push dword title
-	push dword msg_box              V
+	push dword msg_box              
 	push dword NULL
 	call MessageBoxA			  
 	ret
+	
         VS
+	
 int MessageBox(
  HWND    hWnd,
  LPCTSTR lpText,
  LPCTSTR lpCaption,
  UINT    uType
 );
+*********************************
 
-Allocating
+Allocating!!
 ----------------------------
 DB allocates     1 byte.
 
