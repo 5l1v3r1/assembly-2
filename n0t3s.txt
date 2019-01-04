@@ -39,6 +39,11 @@ messagebox_function:
 Calling MessageBoxA Windows API with reverse parameters order!
 Compare your self! 
 **********************************
+...
+section .text
+	msg_box: db "Hello world",0
+	title:   db "Title box", 0
+	
 messagebox_asm_function:
   	push dword MB_OK
 	push dword title
