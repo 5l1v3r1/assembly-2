@@ -17,7 +17,7 @@ PTR -> pointer to string contained on that address!
 |
 '-> ret
 |  
-|----------immunity debbuger pseudo-OUTPUT--------
+|----------immunity debugger pseudo-OUTPUT--------
 |0xffxxxxxx|  .-lpflOldProtect=0                 |
 |0xffxxxxxx|  '-flNewProtect=0                   |
 |0xffxxxxxx|  '-dwSize=0                         |
