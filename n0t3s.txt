@@ -7,7 +7,6 @@ PTR -> pointer to string contained on that address!
 |
 '-> eax=0xdeadbeef
 | mov eax, DWORD PTR DS:[EAX] -> make a pointer to kernel32.virtualprotect string, and move to eax 
-'-> 
 |
 '-> eax="kernel32.virtualprotect"
 '-> ebx=0|
