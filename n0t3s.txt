@@ -1,6 +1,5 @@
-Simple NOTES for anyone who want to read it !
-
-
+# Simple NOTES for anyone who want to read it ! #
+#################################################
 PTR -> pointer to string contained on that address!
 |
 '-> eax=0
