@@ -1,6 +1,34 @@
-Simple NOTES for anyone who want to read it 
+Simple NOTES for anyone who want to read it !
 
-push DWORD -> Used on many WinAPIs for place 4 bytes on stack e.g:
+
+PTR -> pointer to string contained on that address!
+|
+'-> eax=0
+| mov eax, 0xdeadbeef---> Address containing kernel32.virtualprotect
+|
+'-> eax=0xdeadbeef
+| mov eax, DWORD PTR DS:[EAX] -> make a pointer to kernel32.virtualprotect string, and move to eax 
+'-> 
+|
+'-> eax="kernel32.virtualprotect"
+'-> ebx=0|
+'-> ecx=0|
+'-> edx=0|	register values
+'-> esi=0|
+'-> edi=0|
+|
+'-> ret
+|  
+|----------immunity debbuger pseudo-OUTPUT--------
+|0xffxxxxxx|  .-lpflOldProtect=0                 |
+|0xffxxxxxx|  '-flNewProtect=0                   |
+|0xffxxxxxx|  '-dwSize=0                         |
+|0xffxxxxxx|  '-lpAddress=0			 |
+|0xffxxxxxx|  '-kernel32.virtualprotect   	 |
+.....
+
+------------------------------------------------------------------------
+push DWORD -> Used on many WinAPIs for insert 4 bytes on stack e.g:
 
 messagebox_function:
   	push dword MB_OK
@@ -80,6 +108,7 @@ just kidding.... haha!!
 |rdx -> 0xdeadbeefcafebabebeefbebe|
 |.....				  |
 
+------------------------------------------
 Little endian---> The register EIP for example, only will understand this format if you are tryng to execute some ROP Attack  
 \xef\xbe\xad\xde
 
@@ -110,7 +139,7 @@ Big endian:
           '---------|--------'
                     V
                 AX,BX,CX,DX...       -> (16bits) 8 bytes registers 
- 
+ -----------------------------------------------------------------------------------------
 --=Tricks=--
 *-push 1
 *-pop eax
@@ -161,7 +190,7 @@ Big endian:
 '-> cmp eax, ebx -> RET FALSE
 '-> jne exit     -> if not equal jump to exit
 '-> ret          -> else, RET ( return to main on the most cases ) 
-
+------------------------------------------------------------------
 -=Simple loop-=
 _main:
   xor ecx, ecx      -> Clear register to 0x00
