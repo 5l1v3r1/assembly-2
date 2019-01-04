@@ -21,7 +21,6 @@ _main:
 	call sub_function     ; result: eax=0x20
 	call exit             ; Exit program
 
-
 ;add(n1, n2)
 add_func:
 	push ebp	      ; Point EBP to ESP ( our current stack )		
