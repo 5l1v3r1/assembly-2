@@ -14,10 +14,10 @@ _main:
 	
 	xor eax, eax
 	push 0x10 	      ; add(0x00, 0x10)
-	push 0x20  	      ; add(0x20, 0x10)  -> Values gonna be on inverted order 
+	push 0x20  	      ; add(0x20, 0x10)    -> Values gonna be on inverted order 
 	call add_func 	      ; result: eax=0x30
 	
-	push 0x10 	      ; sub(0x10) 		 -> substract 0x10 from current EAX register 
+	push 0x10 	      ; sub(0x10) 	   -> substract 0x10 from current EAX register 
 	call sub_function     ; result: eax=0x20
 	call exit             ; Exit program
 
