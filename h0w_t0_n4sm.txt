@@ -141,7 +141,7 @@ Big endian:
       AL,BL,CL,DL... ->  AH,BH,CH,DL -> This rule are applicable for the all other bytes
           '---------|--------'
                     V
-                AX,BX,CX,DX...       -> (16bits) 8 bytes registers 
+                AX,BX,CX,DX...       -> (16bits) 2 bytes registers 
  -----------------------------------------------------------------------------------------
 --=Tricks=--
 *-push 1
